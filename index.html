@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Timgise'Blog
+title: Timgise's Blog
 ---
 <!doctype html>
 <!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
@@ -26,7 +26,7 @@ title: Timgise'Blog
 
   <div class="wrapper">
     <header>
-      <h1 class="title">Jekyll blog</h1>
+      <h1 class="title">Timgise's Jekyll blog</h1>
     </header>
     <div id="container">
       <p class="tagline"></p>
@@ -41,11 +41,11 @@ title: Timgise'Blog
         </div>
         <article class="markdown-body">
 			<ul class="post">
-				{% for post in site.posts %}
+			{% for post in site.posts %}
 
 　　　　　　<li>{{ post.date | date_to_string }} <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
 
-　　　　{% endfor %}
+　　　　	{% endfor %}
 			</ul>
         </article>
       </div>

@@ -1,0 +1,34 @@
+---
+layout: default
+title: 你好，redhat7
+---
+
+<h2>{{ page.title }}</h2>
+
+#修改启动级别
+#使用systemd创建符号链接指向默认运行级别。
+<pre>
+
+
+ln -sf /lib/systemd/system/multi-user.target /etc/systemd/system/default.target
+
+</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>{{ page.date | date_to_string }}</p>
