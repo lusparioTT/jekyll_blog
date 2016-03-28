@@ -1,0 +1,56 @@
+---
+layout: default
+title: Redis 使用 
+---
+
+<h2>{{ page.title }}</h2>
+
+<h3>Redis On Window</h3>
+<pre>
+github地址：
+	<a href="https://github.com/MSOpenTech/redis">Redis Windows 版本</a> 
+	<a href="https://github.com/xetorthio/jedis">Redis Java 客户端(Jedis)</a>
+配置文件：redis.conf
+
+服务启动：F:\Redis-x64-3.0.500> .\redis-server.exe redis.config
+
+
+
+
+1、使用Redis作为LRU缓存
+	①最大内存配置（Maxmemory Configuration Directive）
+		# maxmemory <bytes>
+		maxmemory 100MB		
+
+	②内存回收策略（Eviction policies）
+		# maxmemory-policy volatile-lru
+		maxmemory-policy allkeys-lru
+</pre>
+
+<h3>Redis On Linux</h3>
+
+<pre>
+1、安装
+	①
+
+
+</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>{{ page.date | date_to_string }}</p>
