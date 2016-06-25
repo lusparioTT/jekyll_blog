@@ -1,0 +1,75 @@
+---
+layout: default
+title: apache-httpd使用
+---
+<h2>Redhat Linux Ftp 服务-vsftpd使用</h2>
+
+<pre>
+
+安装 apr
+        
+    [root@localhost:/work/soft/apache]# tar jxvf apr-1.5.0.tar.bz2
+
+    [root@localhost:/work/soft/apache/apr-1.5.0]# ./configure --prefix=/work/installed/apr
+
+    [root@localhost:/work/soft/apache/apr-1.5.0]# make
+
+    [root@localhost:/work/soft/apache/apr-1.5.0]# make install
+
+
+安装 apr-util
+
+    [root@localhost:/work/soft/apache]# tar jxvf  apr-util-1.5.3.tar.bz2
+    [root@localhost:/work/soft/apache/apr-util-1.5.3]# ./configure --prefix=/work/installed/apr-util --with-apr=/work/installed/apr
+
+    [root@localhost:/work/soft/apache/apr-util-1.5.3]# make
+
+    [root@localhost:/work/soft/apache/apr-util-1.5.3]# make install
+
+
+安装 pcre
+   
+    [root@localhost:/work/soft/apache]# tar jxvf  pcre-8.35.tar.bz2
+    [root@localhost:/work/soft/apache/pcre-8.35]# ./configure --prefix=/work/installed/pcre
+
+    [root@localhost:/work/soft/apache/pcre-8.35]# make
+
+    [root@localhost:/work/soft/apache/pcre-8.35]# make install
+
+    注意：如果在安装 pcre 时，遇到问题：configure: error: You need a C++ compiler for C++ support.
+    解决方法：sudo apt-get install build-essential
+
+
+安装apache
+        下载地址：http://httpd.apache.org/
+            [root@ubuntu:/work/soft/apache]# tar jxvf  httpd-2.4.9.tar.bz2
+            [root@@ubuntu:/work/soft/apache/httpd-2.4.9]#  ./configure --prefix=/work/installed/apache --with-apr=/work/installed/apr --with-apr-util=/work/installed/apr-util --with-pcre=/work/installed/pcre
+            [root@@ubuntu:/work/soft/apache/httpd-2.4.9]# make
+            [root@@ubuntu:/work/soft/apache/httpd-2.4.9]# make install
+
+
+配置
+        1，修改配置文件
+            否则会出现问题：
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress this message
+            解决方法：
+            [root@ubuntu:/work/installed/apache]# sudo gedit conf/httpd.conf 
+            把：
+                # ServerName www.example.com:80
+            改为：
+                ServerName localhost:80
+
+				 检查apache是否被正确的安装
+
+　　执行 /usr/local/apache/bin/apachectl -t 检查apache的配置文件语法是否正确。未经更改的apache配置文件语法显然是正确无误的，
+    当我们对配置文件httpd.conf 或其包含的文件作了更改的时候，最好先运行一下这个命令，它的错误输出能迅速定位配置文件哪里出现了错误。
+
+　　执行命令行 /usr/local/apache/bin/apachectl start 启动apache守护进程，在别的机器的浏览器里输入这个服务器的ip地址，看是否可以正常浏览apache的默认页面-通常是一个"IT works!"。
+    为了方便以后维护apache 更方便些，我们可以修改环境变量文件/etc/profile,在文件的末尾追加行 "export  PATH=$PATH:/usr/local/apache/bin "，
+	保存后执行 source /etc/profile 使其修改立即生效，这样我们以后执行apache 启动之类的命令就不必输很长一串路径，直接输入 apachectl start 就可以了。
+
+注：测试的时候如果无法显示，检查一下防火墙和selinux是否已经关闭，关掉就OK！
+
+</pre>
+
+<p>{{ page.date | date_to_string }}</p>
